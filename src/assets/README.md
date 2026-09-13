@@ -1,0 +1,7 @@
+Hero asset: `craftsmanship-hero.png`
+
+Generated using the built-in image_gen tool. The image is decorative editorial artwork, not personal project evidence. Astro emits responsive WebP versions for the page.
+
+Final prompt:
+
+Create a photorealistic editorial still-life image asset for the upper-right hero of a premium professional portfolio. Portrait composition 3:4. A single rough, irregular pale limestone stone is the main focal object, on a simple ivory limestone architectural plinth. A small utilitarian stone-working mallet with a matte steel rectangular head and dark graphite handle is partially slipping out from behind the RIGHT side of the stone, mostly obscured by the stone. It must be a real workshop mallet, NOT a wooden judge's gavel, no turned wood, no ceremonial design. A slender steel chisel rests discreetly against the stone at its lower left, secondary and unobtrusive. Stone occupies most of the lower middle frame. Background: understated ivory architectural wall planes, a narrow vertical recess, pale blue-grey daylight, soft diagonal shadows. Minimal, sophisticated, quiet craftsmanship and continual refinement. Natural rough stone textures and soft realistic reflections on metal. Restrained ivory/light grey/navy-grey palette. No people, no lettering or text, no logos, no symbols, no square-and-compasses, no letter G, no explicit Masonic imagery. Keep all tools much smaller than the stone and partially obscured. Leave calm negative space in upper frame. This is a standalone image asset, not a website screenshot.

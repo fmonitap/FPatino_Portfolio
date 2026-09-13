@@ -1,0 +1,52 @@
+---
+import '../styles/global.css';
+import { portfolio } from '../data/portfolio';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={portfolio.description} />
+    <meta name="color-scheme" content="light dark" />
+    <meta property="og:title" content={`${portfolio.name} — ${portfolio.role}`} />
+    <meta property="og:description" content={portfolio.description} />
+    <meta property="og:type" content="website" />
+    <title>{portfolio.name} — {portfolio.role}</title>
+    <script is:inline>
+      (() => {
+        let theme;
+        try { theme = localStorage.getItem('portfolio-theme'); } catch {}
+        document.documentElement.dataset.theme = theme === 'light' || theme === 'dark' ? theme : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <slot />
+    <script>
+      const toggle = document.querySelector<HTMLButtonElement>('#theme-toggle');
+      const preference = window.matchMedia('(prefers-color-scheme: dark)');
+      const syncButton = () => {
+        const dark = document.documentElement.dataset.theme === 'dark';
+        toggle?.setAttribute('aria-pressed', String(dark));
+        toggle?.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+      };
+      syncButton();
+      toggle?.addEventListener('click', () => {
+        const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = theme;
+        try { localStorage.setItem('portfolio-theme', theme); } catch {}
+        syncButton();
+      });
+      preference.addEventListener('change', event => {
+        let saved;
+        try { saved = localStorage.getItem('portfolio-theme'); } catch {}
+        if (saved !== 'light' && saved !== 'dark') {
+          document.documentElement.dataset.theme = event.matches ? 'dark' : 'light';
+          syncButton();
+        }
+      });
+    </script>
+  </body>
+</html>
