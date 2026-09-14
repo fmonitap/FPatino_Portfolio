@@ -1,3 +1,4 @@
+Hi! I'm Francis Mondelle Patino and this my portfolio.
 # Personal portfolio
 
 A static single-page portfolio built with Astro, TypeScript, Tailwind CSS, and daisyUI components.
