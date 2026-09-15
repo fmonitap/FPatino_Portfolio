@@ -1,0 +1,12 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { portfolio } from '../data/portfolio';
+---
+<SiteLayout title="About">
+  <header class="page-intro"><p class="eyebrow">About</p><h1>{portfolio.name}</h1><p>{portfolio.role}</p><p>{portfolio.location}</p></header>
+  <div class="prose about-summary">{portfolio.summary.slice(0, 2).map(paragraph => <p>{paragraph}</p>)}</div>
+  <section class="about-section"><h2>Selected capabilities & tools</h2><div class="skill-badges">{portfolio.capabilities.slice(0, 3).map(item => <span class="badge">{item.title}</span>)}{portfolio.analytics.groups[0].items.map(item => <span class="badge">{item}</span>)}</div></section>
+  <section class="about-section"><h2>Education</h2><div class="education-list">{portfolio.education.map(item => <article class="education-card"><h3>{item.qualification}</h3><p>{item.institution} · {item.period}</p><p>{item.detail}</p></article>)}</div></section>
+  <section class="about-section"><h2>Certifications</h2><ul class="certification-list">{portfolio.certifications.map(item => <li><h3>{item.href ? <a href={item.href}>{item.name} ↗</a> : item.name}</h3><p>{item.issuer} · {item.year}</p></li>)}</ul></section>
+  <a class="btn primary-button" href="/projects/">Explore projects <span aria-hidden="true">→</span></a>
+</SiteLayout>

@@ -1,0 +1,21 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import LineIcon from '../components/LineIcon.astro';
+import { portfolio } from '../data/portfolio';
+const employers = portfolio.experience.reduce<{ company: string; jobs: typeof portfolio.experience }[]>((groups, job) => {
+  const previous = groups.at(-1);
+  if (previous?.company === job.company) previous.jobs.push(job);
+  else groups.push({ company: job.company, jobs: [job] });
+  return groups;
+}, []);
+---
+<SiteLayout title="Experience">
+  <header class="page-intro"><p class="eyebrow">Commercial experience. Analytical thinking.</p><h1>Professional Experience</h1><p>{portfolio.experienceNote}</p><a class="view-link" href="/projects/">Explore analytical work <span aria-hidden="true">→</span></a></header>
+  <div class="employer-list">{employers.map(employer => <article class="employer-card glass-panel">
+    <div class="employer-heading"><LineIcon name="Experience"/><h2>{employer.company}</h2></div>
+    <ol class:list={['employer-roles', { 'has-progression': employer.jobs.length > 1 }]}>{employer.jobs.map(job => <li>
+      <div class="employer-role"><h3>{job.role}</h3><p>{job.period}</p><span>{job.location}</span></div>
+      <details class="role-detail"><summary>Role details</summary><p>{job.description}</p><ul>{job.highlights.map(highlight => <li>{highlight}</li>)}</ul></details>
+    </li>)}</ol>
+  </article>)}</div>
+</SiteLayout>

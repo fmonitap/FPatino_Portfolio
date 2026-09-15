@@ -1,6 +1,8 @@
 ---
 import '../styles/global.css';
 import { portfolio } from '../data/portfolio';
+interface Props { title?: string }
+const { title } = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
@@ -12,7 +14,7 @@ import { portfolio } from '../data/portfolio';
     <meta property="og:title" content={`${portfolio.name} — ${portfolio.role}`} />
     <meta property="og:description" content={portfolio.description} />
     <meta property="og:type" content="website" />
-    <title>{portfolio.name} — {portfolio.role}</title>
+    <title>{title ? `${title} — ${portfolio.name}` : `${portfolio.name} — ${portfolio.role}`}</title>
     <script is:inline>
       (() => {
         let theme;

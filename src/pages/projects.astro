@@ -1,0 +1,11 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import ProjectGrid from '../components/ProjectGrid.astro';
+import CaseStudyCard from '../components/CaseStudyCard.astro';
+import { portfolio } from '../data/portfolio';
+---
+<SiteLayout title="Projects">
+  <header class="page-intro"><p class="eyebrow">Projects & analytical work</p><h1>Questions. Evidence. Decisions.</h1><p>{portfolio.caseStudySection.introduction}</p></header>
+  <ProjectGrid/>
+  <section id="project-details" class="project-details" aria-labelledby="project-detail-heading"><h2 id="project-detail-heading">Case studies</h2>{portfolio.caseStudies.length ? <div class="case-study-list">{portfolio.caseStudies.map(study => <CaseStudyCard study={study}/>)}</div> : <div class="project-empty"><h3>{portfolio.caseStudySection.emptyTitle}</h3><p>{portfolio.caseStudySection.emptyDescription}</p></div>}</section>
+</SiteLayout>

@@ -18,6 +18,7 @@ export interface CaseStudy {
 export const portfolio = {
   name: 'Francis Mondelle Patino',
   initials: 'FP',
+  navigationClosing: 'Data for better decisions.',
   role: 'Business Development & Commercial Professional | Business Analytics',
   location: 'Port Pirie, South Australia',
   portrait: '', // Add a real portrait URL or public asset path.
@@ -38,12 +39,17 @@ export const portfolio = {
   ],
   tagline: 'Commercial perspective. Analytical thinking.',
   hero: {
-    eyebrow: 'Commercial experience. A data-driven perspective.',
+    eyebrow: 'Business Development & Analytics',
     heading: 'Turning business opportunities into',
     emphasis: 'meaningful outcomes.',
     description: 'More than seven years in business development, account management and operations—bringing commercial experience and practical analytical work to better business decisions.',
     imageAlt: 'Rough limestone on an architectural plinth, with a small steel mallet partly hidden behind its right side and a chisel resting beside it.',
     principles: ['Commercial understanding', 'Analytical curiosity', 'Practical decision support'],
+    positioning: [
+      { title: 'Commercial Growth', description: 'Building partnerships and revenue opportunities', icon: 'Growth' },
+      { title: 'Data-Driven Thinking', description: 'From data to insights for better decisions', icon: 'Projects' },
+      { title: 'Real-World Impact', description: 'Practical solutions in complex environments', icon: 'Impact' },
+    ],
   },
   introduction: 'Connecting commercial experience with data-driven decisions across account management, network planning and operations.',
   description: 'Francis Mondelle Patino — Business Development & Commercial Professional | Business Analytics. More than seven years across business development, account management and operations.',

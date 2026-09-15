@@ -1,0 +1,13 @@
+---
+import { Image } from 'astro:assets';
+import architecture from '../assets/architecture-covers.png';
+import { portfolio } from '../data/portfolio';
+interface Props { limit?: number }
+const { limit } = Astro.props;
+---
+<div class="project-grid">
+          {(portfolio.caseStudies.length ? portfolio.caseStudies.slice(0, limit).map(study => ({ category: study.category, title: study.title, description: study.summary, tools: study.tools.join(' · '), placeholder: false })) : portfolio.projectPlaceholders.slice(0, limit).map(item => ({ ...item, placeholder: true }))).map((project, index) => <article class="project-card glass-panel">
+            <div class="project-cover"><Image src={architecture} alt="" width={1200} format="webp" loading="lazy" style={'left: ' + (index % 3) * -100 + '%'} /><span class="project-category">{project.category}</span></div>
+            <div class="project-body"><h3>{project.title}</h3><p>{project.description}</p><div class="project-footer"><span>{project.placeholder ? 'Placeholder · ' : ''}{project.tools}</span><a class="round-arrow" href="/projects/#project-details" aria-label={'Details for ' + project.title}>→</a></div></div>
+          </article>)}
+        </div>

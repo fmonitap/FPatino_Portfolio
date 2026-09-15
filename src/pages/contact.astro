@@ -1,0 +1,12 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import SocialIcon from '../components/SocialIcon.astro';
+import { portfolio } from '../data/portfolio';
+---
+<SiteLayout title="Contact">
+  <header class="page-intro"><p class="eyebrow">Contact</p><h1>{portfolio.contact.heading}</h1><p>{portfolio.contact.description}</p></header>
+  <div class="contact-details"><p>{portfolio.name}<br/>{portfolio.location}</p><a href={'mailto:' + portfolio.contact.email}>{portfolio.contact.email}</a><a href={portfolio.contact.phoneHref}>{portfolio.contact.phone}</a>
+    <div class="contact-socials">{portfolio.contact.socials.map(social => social.href ? <a href={social.href}><SocialIcon name={social.label}/>{social.label} ↗</a> : <span><SocialIcon name={social.label}/>{social.label} · link to be added</span>)}</div>
+    <div class="contact-actions"><a class="btn primary-button" href={'mailto:' + portfolio.contact.email}>Say hello <span aria-hidden="true">→</span></a>{portfolio.resume && <a class="btn secondary-button" href={portfolio.resume} download>Download CV <span aria-hidden="true">↓</span></a>}</div>
+  </div>
+</SiteLayout>
