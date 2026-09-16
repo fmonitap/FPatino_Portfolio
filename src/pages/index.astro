@@ -1,24 +1,8 @@
 ---
-import { getImage } from 'astro:assets';
-import craftsmanship from '../assets/craftsmanship-composed-v3.png';
 import SiteLayout from '../layouts/SiteLayout.astro';
+import ResumeLink from '../components/ResumeLink.astro';
 import ProjectGrid from '../components/ProjectGrid.astro';
-import LineIcon from '../components/LineIcon.astro';
-import { portfolio } from '../data/portfolio';
-const heroScene = await getImage({ src: craftsmanship, width: 1672, format: 'webp' });
 ---
 <SiteLayout title="Home" home>
-      <section class="hero-section" aria-labelledby="hero-heading">
-        <figure class="hero-art" role="img" aria-label={portfolio.hero.imageAlt} style={{ borderImageSource: `url(${heroScene.src})` }}></figure>
-        <div class="hero-art-label" aria-hidden="true">Data<br/>Insights<br/>Opportunities<span></span></div>
-        <div class="hero-copy">
-          <p class="eyebrow">{portfolio.hero.eyebrow}</p>
-          <h1 id="hero-heading">{portfolio.hero.heading}<br/> <span>{portfolio.hero.emphasis}</span></h1>
-          <p class="hero-description">{portfolio.hero.description}</p>
-          <div class="hero-actions"><a class="btn primary-button" href="/projects/">View my work <span aria-hidden="true">→</span></a>{portfolio.resume ? <a class="btn secondary-button" href={portfolio.resume} download>Download CV <span aria-hidden="true">↓</span></a> : <span class="btn secondary-button unavailable" aria-disabled="true">CV to be added <span aria-hidden="true">↓</span></span>}</div>
-        </div>
-        <ul class="hero-positioning" aria-label="Professional positioning">{portfolio.hero.positioning.map(item => <li><LineIcon name={item.icon}/><div><h3>{item.title}</h3><p>{item.description}</p></div></li>)}</ul>
-      </section>
-
-<section class="home-projects" aria-labelledby="featured-heading"><div class="section-heading"><h2 id="featured-heading">Featured analytical work</h2><a class="view-link" href="/projects/">All projects <span aria-hidden="true">→</span></a></div><ProjectGrid limit={3}/></section>
+<section class="hero"><div class="hero-copy"><div class="eyebrow">Francis Patino</div><h1>Commercial perspective.<br><em>Analytical thinking.</em></h1><p>A background in business development. A growing focus on business analytics. Connecting commercial questions with evidence and practical decisions.</p><div class="actions"><a class="button primary" href="/projects/">View My Work <span aria-hidden="true">↗</span></a><ResumeLink/></div></div><figure class="hero-art"><img src="/assets/architectural-stairs.jpg" width="1400" height="937" alt=""><figcaption><span>Business development &amp; analytics</span>Built on experience. Informed by evidence.</figcaption></figure></section><section class="themes" aria-label="Key themes"><article><span class="number">01</span><div><h3>Commercial Growth</h3><p>Start with the business question.</p></div></article><article><span class="number">02</span><div><h3>Data-Driven Thinking</h3><p>Use evidence to bring clarity.</p></div></article><article><span class="number">03</span><div><h3>Real-World Impact</h3><p>Connect insight to a practical decision.</p></div></article></section><section class="section"><div class="section-head"><h2>Featured Projects</h2><a class="text-link" href="/projects/">Explore the work <span aria-hidden="true">↗</span></a></div><ProjectGrid featured/></section>
 </SiteLayout>

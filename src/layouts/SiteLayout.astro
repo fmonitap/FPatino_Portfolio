@@ -1,33 +1,21 @@
 ---
 import BaseLayout from './BaseLayout.astro';
-import LineIcon from '../components/LineIcon.astro';
-import SocialIcon from '../components/SocialIcon.astro';
 import { portfolio } from '../data/portfolio';
 import '../styles/site.css';
 interface Props { title: string; home?: boolean }
 const { title, home = false } = Astro.props;
-const navigation = [
-  { label: 'Home', href: '/' }, { label: 'Experience', href: '/experience/' },
-  { label: 'Projects', href: '/projects/' }, { label: 'About', href: '/about/' },
-  { label: 'Contact', href: '/contact/' },
-];
+const navigation = [['/', 'Home'], ['/experience/', 'Experience'], ['/projects/', 'Projects'], ['/about/', 'About'], ['/contact/', 'Contact']];
 ---
 <BaseLayout title={title}>
-  <aside class="navigation-rail" aria-label="Site navigation">
-    <a class="rail-monogram" href="/" aria-label={portfolio.name + ', home'}>{portfolio.initials}</a>
-    <nav aria-label="Main navigation">{navigation.map(item => <a href={item.href} aria-current={Astro.url.pathname.replace(/\/$/, '') === item.href.replace(/\/$/, '') ? 'page' : undefined}><LineIcon name={item.label}/><span>{item.label}</span></a>)}</nav>
-    <div class="rail-bottom">
-      <a class="rail-connect" href="/contact/">Let’s connect</a>
-      <div class="rail-socials">{portfolio.contact.socials.map(social => social.href ? <a href={social.href} aria-label={social.label}><SocialIcon name={social.label}/></a> : <span aria-label={social.label + ' link not supplied'} title={social.label + ' link not supplied'}><SocialIcon name={social.label}/></span>)}<a href={'mailto:' + portfolio.contact.email} aria-label="Email"><SocialIcon name="Email"/></a></div>
-      <p>{portfolio.navigationClosing}</p>
-    </div>
+  <aside class="rail">
+    <a href="/" class="monogram" aria-label={portfolio.name + ' home'}>{portfolio.initials}</a>
+    <p class="identity">Francis Patino<br/><span class="muted">Commercial &amp; Analytics</span></p>
+    <nav aria-label="Main navigation">{navigation.map(([href, label], index) => <a href={href} aria-current={Astro.url.pathname.replace(/\/$/, '') === href.replace(/\/$/, '') ? 'page' : undefined}><span>0{index + 1}</span>{label}</a>)}</nav>
+    <button class="theme" type="button" aria-pressed="false" data-theme-toggle><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 15.2A8.5 8.5 0 0 1 8.8 4a8.5 8.5 0 1 0 11.2 11.2Z"/></svg><span>Dark mode</span></button>
   </aside>
-  <div class:list={['site-content', { 'home-page': home }]}>
-    <header class="page-actions">
-      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch color theme" aria-pressed="false"><span class="theme-sun" aria-hidden="true">☼</span><svg class="theme-moon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13A8.5 8.5 0 0 1 11 3.5 8.5 8.5 0 1 0 20.5 13Z"/></svg></button>
-      <a class="btn primary-button" href="/contact/">Let’s connect <span aria-hidden="true">→</span></a>
-    </header>
-    <main id="main" class:list={[{ 'interior-page': !home }]}><slot/></main>
-    <footer class="site-footer"><p>© {new Date().getFullYear()} {portfolio.name}</p><a href="/projects/">Explore projects <span aria-hidden="true">→</span></a></footer>
-  </div>
+  <main id="main" tabindex="-1">
+    <div class="topline"><span>Business Development &nbsp; / &nbsp; Business Analytics</span><span>{title}</span></div>
+    <slot/>
+    <footer class="footer"><span>Francis Patino · {portfolio.tagline}</span>{home ? <a href="https://unsplash.com/photos/R-wQExeiGrc" target="_blank" rel="noopener noreferrer">Photography by Rubén García / Unsplash ↗</a> : <a href="/contact/">Contact ↗</a>}</footer>
+  </main>
 </BaseLayout>

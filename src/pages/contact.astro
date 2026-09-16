@@ -1,12 +1,10 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
-import SocialIcon from '../components/SocialIcon.astro';
+import PageIntro from '../components/PageIntro.astro';
 import { portfolio } from '../data/portfolio';
+import ContactDraft from '../components/ContactDraft.astro';
+import ResumeLink from '../components/ResumeLink.astro';
 ---
 <SiteLayout title="Contact">
-  <header class="page-intro"><p class="eyebrow">Contact</p><h1>{portfolio.contact.heading}</h1><p>{portfolio.contact.description}</p></header>
-  <div class="contact-details"><p>{portfolio.name}<br/>{portfolio.location}</p><a href={'mailto:' + portfolio.contact.email}>{portfolio.contact.email}</a><a href={portfolio.contact.phoneHref}>{portfolio.contact.phone}</a>
-    <div class="contact-socials">{portfolio.contact.socials.map(social => social.href ? <a href={social.href}><SocialIcon name={social.label}/>{social.label} ↗</a> : <span><SocialIcon name={social.label}/>{social.label} · link to be added</span>)}</div>
-    <div class="contact-actions"><a class="btn primary-button" href={'mailto:' + portfolio.contact.email}>Say hello <span aria-hidden="true">→</span></a>{portfolio.resume && <a class="btn secondary-button" href={portfolio.resume} download>Download CV <span aria-hidden="true">↓</span></a>}</div>
-  </div>
+<PageIntro label="Contact" description="For conversations about business development, commercial opportunities and business analytics.">Let’s start with<br>a conversation.</PageIntro><section class="contact-layout"><div class="contact-status"><div class="eyebrow">Get in touch</div><h2>{portfolio.name}</h2><p>{portfolio.location}</p><div class="contact-links"><a class="text-link" href={'mailto:' + portfolio.contact.email}>{portfolio.contact.email}</a><a class="text-link" href={portfolio.contact.phoneHref}>{portfolio.contact.phone}</a>{portfolio.contact.socials.map(social => social.href ? <a class="text-link" href={social.href}>{social.label} ↗</a> : <p>{social.label} · link to be added</p>)}</div><div class="actions"><ResumeLink/></div><p>You can prepare and download a message draft here. Messages are not sent through this site.</p></div><ContactDraft/></section>
 </SiteLayout>

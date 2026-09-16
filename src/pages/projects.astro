@@ -1,11 +1,8 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
 import ProjectGrid from '../components/ProjectGrid.astro';
-import CaseStudyCard from '../components/CaseStudyCard.astro';
-import { portfolio } from '../data/portfolio';
 ---
 <SiteLayout title="Projects">
-  <header class="page-intro"><p class="eyebrow">Projects & analytical work</p><h1>Questions. Evidence. Decisions.</h1><p>{portfolio.caseStudySection.introduction}</p></header>
-  <ProjectGrid/>
-  <section id="project-details" class="project-details" aria-labelledby="project-detail-heading"><h2 id="project-detail-heading">Case studies</h2>{portfolio.caseStudies.length ? <div class="case-study-list">{portfolio.caseStudies.map(study => <CaseStudyCard study={study}/>)}</div> : <div class="project-empty"><h3>{portfolio.caseStudySection.emptyTitle}</h3><p>{portfolio.caseStudySection.emptyDescription}</p></div>}</section>
+<PageIntro label="Projects" description="A dedicated space for business analytics and commercial work — with the context, evidence and reasoning behind each recommendation.">The question comes first.</PageIntro><section class="page-content"><ProjectGrid/><div class="details"><details><summary>What will each case study include?</summary><p>The business question and its context, the data and approach used, the resulting insight, and a practical recommendation. Outcomes will be included only where they can be supported by evidence.</p></details></div><div class="actions"><a class="text-link" href="/about/">Read about my perspective <span aria-hidden="true">↗</span></a></div></section>
 </SiteLayout>

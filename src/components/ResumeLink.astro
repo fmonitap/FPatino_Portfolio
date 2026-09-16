@@ -1,0 +1,4 @@
+---
+import { portfolio } from '../data/portfolio';
+---
+{portfolio.resume ? <a class="button" href={portfolio.resume} download>Download CV <span aria-hidden="true">↓</span></a> : <span class="tag">CV to be added</span>}

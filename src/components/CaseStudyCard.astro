@@ -3,16 +3,9 @@ import type { CaseStudy } from '../data/portfolio';
 interface Props { study: CaseStudy }
 const { study } = Astro.props;
 ---
-<article class="card case-study glass-panel">
-  <div class="flex flex-wrap items-center justify-between gap-3"><span class="eyebrow">{study.category}</span><span class="badge">{study.status}</span></div>
-  <h3 class="mt-4 text-xl font-semibold tracking-tight">{study.title}</h3>
-  <p class="muted mt-3 text-sm leading-7">{study.summary}</p>
-  <dl class="case-study-fields mt-6">
-    <div><dt>Business problem</dt><dd>{study.businessProblem}</dd></div>
-    <div><dt>Data / approach</dt><dd>{study.dataApproach}</dd></div>
-    <div><dt>Tools used</dt><dd class="flex flex-wrap gap-2">{study.tools.map(tool => <span class="badge">{tool}</span>)}</dd></div>
-    <div><dt>Key insight</dt><dd>{study.keyInsight}</dd></div>
-    <div class="recommendation"><dt>Outcome or recommendation</dt><dd>{study.outcome}</dd></div>
-  </dl>
-  {study.href && <a class="text-link mt-5 text-sm font-medium" href={study.href}>Explore case study <span aria-hidden="true">↗</span></a>}
-</article>
+<article class="empty case-study"><div>
+  <span class="eyebrow">{study.category}</span> <span class="tag">{study.status}</span>
+  <h3>{study.title}</h3><p>{study.summary}</p>
+  <dl><dt>Business question</dt><dd>{study.businessProblem}</dd><dt>Data and approach</dt><dd>{study.dataApproach}</dd><dt>Tools</dt><dd>{study.tools.join(' · ')}</dd><dt>Key insight</dt><dd>{study.keyInsight}</dd><dt>Outcome or recommendation</dt><dd>{study.outcome}</dd></dl>
+  {study.href && <a class="text-link" href={study.href}>Explore case study <span aria-hidden="true">↗</span></a>}
+</div></article>

@@ -1,12 +1,11 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
 import { portfolio } from '../data/portfolio';
 ---
 <SiteLayout title="About">
-  <header class="page-intro"><p class="eyebrow">About</p><h1>{portfolio.name}</h1><p>{portfolio.role}</p><p>{portfolio.location}</p></header>
-  <div class="prose about-summary">{portfolio.summary.slice(0, 2).map(paragraph => <p>{paragraph}</p>)}</div>
-  <section class="about-section"><h2>Selected capabilities & tools</h2><div class="skill-badges">{portfolio.capabilities.slice(0, 3).map(item => <span class="badge">{item.title}</span>)}{portfolio.analytics.groups[0].items.map(item => <span class="badge">{item}</span>)}</div></section>
-  <section class="about-section"><h2>Education</h2><div class="education-list">{portfolio.education.map(item => <article class="education-card"><h3>{item.qualification}</h3><p>{item.institution} · {item.period}</p><p>{item.detail}</p></article>)}</div></section>
-  <section class="about-section"><h2>Certifications</h2><ul class="certification-list">{portfolio.certifications.map(item => <li><h3>{item.href ? <a href={item.href}>{item.name} ↗</a> : item.name}</h3><p>{item.issuer} · {item.year}</p></li>)}</ul></section>
-  <a class="btn primary-button" href="/projects/">Explore projects <span aria-hidden="true">→</span></a>
+<PageIntro label="About" description="I’m Francis Patino. My focus brings together business development, commercial experience and a growing interest in business analytics.">A broader lens on<br>business decisions.</PageIntro><section class="about-layout page-content"><div><h2>Building on experience.</h2>{portfolio.summary.map(paragraph => <p>{paragraph}</p>)}<div class="actions"><a class="text-link" href="/projects/">Explore my work <span aria-hidden="true">↗</span></a></div></div><aside class="about-aside"><div class="eyebrow">The connecting thread</div><h3>Commercial context</h3><p>Understand the decision before choosing the analysis.</p><h3>Analytical curiosity</h3><p>Ask what the evidence supports — and what it does not.</p><h3>Practical relevance</h3><p>Bring the insight back to the business question.</p></aside></section>
+<section class="content-section"><h2>Capabilities &amp; tools</h2>{portfolio.capabilities.map(item => <article class="content-row"><h3>{item.title}</h3><p>{item.description}</p></article>)}{portfolio.analytics.groups.map(group => <article class="content-row"><h3>{group.category}</h3><p>{group.items.join(' · ')}</p></article>)}</section>
+<section class="content-section"><h2>Education</h2>{portfolio.education.map(item => <article class="content-row"><h3>{item.qualification}</h3><p>{item.institution} · {item.period}</p><p>{item.status}</p><p>{item.detail}</p></article>)}</section>
+<section class="content-section"><h2>Certifications</h2>{portfolio.certifications.map(item => <article class="content-row"><h3>{item.href ? <a class="text-link" href={item.href}>{item.name} ↗</a> : item.name}</h3><p>{item.issuer} · {item.year}</p></article>)}</section>
 </SiteLayout>
