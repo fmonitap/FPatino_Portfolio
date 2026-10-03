@@ -5,7 +5,7 @@ import { portfolio } from '../data/portfolio';
 import '../styles/site.css';
 interface Props { title: string; home?: boolean }
 const { title, home = false } = Astro.props;
-const navigation = [['/', 'Home'], ['/experience/', 'Experience'], ['/projects/', 'Projects'], ['/about/', 'About'], ['/contact/', 'Contact']];
+const navigation = [['/', 'Home'], ['/projects/', 'Projects'], ['/about/', 'Profile']];
 ---
 <BaseLayout title={title}>
   <aside class="rail">
@@ -15,8 +15,8 @@ const navigation = [['/', 'Home'], ['/experience/', 'Experience'], ['/projects/'
     <button class="theme" type="button" aria-pressed="false" data-theme-toggle><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 15.2A8.5 8.5 0 0 1 8.8 4a8.5 8.5 0 1 0 11.2 11.2Z"/></svg><span>Dark mode</span></button>
   </aside>
   <main id="main" tabindex="-1">
-    <div class="topline"><span>Business Development &nbsp; / &nbsp; Business Analytics</span><span>{title}</span></div>
+    {!home && <div class="topline"><span>Business Development &nbsp; / &nbsp; Business Analytics</span><span>{title}</span></div>}
     <slot/>
-    <footer class="footer"><span>Francis Patino · {portfolio.tagline}</span>{home ? <a href="https://unsplash.com/photos/R-wQExeiGrc" target="_blank" rel="noopener noreferrer">Photography by Rubén García / Unsplash ↗</a> : <a href={siteUrl('/contact/')}>Contact ↗</a>}</footer>
+    <footer class="footer"><span>Francis Patino · {portfolio.tagline}</span>{!home && <a href={siteUrl('/about/#contact')}>Contact ↗</a>}</footer>
   </main>
 </BaseLayout>

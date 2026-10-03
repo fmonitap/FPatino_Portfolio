@@ -1,9 +1,28 @@
 ---
-import { siteUrl } from '../utils/urls';
 import SiteLayout from '../layouts/SiteLayout.astro';
 import PageIntro from '../components/PageIntro.astro';
-import ProjectGrid from '../components/ProjectGrid.astro';
+import { portfolio } from '../data/portfolio';
+import CaseStudyCard from '../components/CaseStudyCard.astro';
 ---
 <SiteLayout title="Projects">
-<PageIntro label="Projects" description="A dedicated space for business analytics and commercial work — with the context, evidence and reasoning behind each recommendation.">The question comes first.</PageIntro><section class="page-content"><ProjectGrid/><div class="details"><details><summary>What will each case study include?</summary><p>The business question and its context, the data and approach used, the resulting insight, and a practical recommendation. Outcomes will be included only where they can be supported by evidence.</p></details></div><div class="actions"><a class="text-link" href={siteUrl('/about/')}>Read about my perspective <span aria-hidden="true">↗</span></a></div></section>
+  <PageIntro label="Projects" description="Two ways I explore problems: understanding them through data, and building tools that make everyday work easier.">Analysis and ideas.<br/>Built into practice.</PageIntro>
+  <nav class="profile-sections" aria-label="Project collections"><a href="#analytics">Analytics</a><a href="#apps">Apps &amp; Tools</a></nav>
+  <section id="analytics" class="project-collection" aria-labelledby="analytics-title">
+    <div class="eyebrow">01 / Analytics portfolio</div>
+    <h2 id="analytics-title">Find the insight. Explain the decision.</h2>
+    <p class="collection-intro">Case studies covering business questions, data preparation, analysis, visualisation and recommendations.</p>
+    {portfolio.caseStudies.length ? portfolio.caseStudies.map(study => <CaseStudyCard study={study}/>) : <div class="collection-empty"><h3>Case studies are being prepared.</h3><p>Completed analyses will appear here with their methods, findings and limitations.</p></div>}
+    <details class="collection-details"><summary>What will an analytics case study show?</summary><p>The question, data sources, approach, tools, key insight, and the recommendation or supported outcome.</p></details>
+  </section>
+  <section id="apps" class="project-collection" aria-labelledby="apps-title">
+    <div class="eyebrow">02 / Apps &amp; Tools portfolio</div>
+    <h2 id="apps-title">Build something useful.</h2>
+    <p class="collection-intro">Future apps and tools for my work, my wife’s everyday needs, and ideas I explore as a hobby.</p>
+    <div class="app-directions" aria-label="Areas for future apps">
+      <article><h3>Work</h3><p>Tools to improve everyday tasks and workflows.</p></article>
+      <article><h3>Personal &amp; family</h3><p>Practical ideas that help at home or support my wife.</p></article>
+      <article><h3>Hobby experiments</h3><p>Small builds driven by curiosity and learning.</p></article>
+    </div>
+    <div class="collection-empty"><span class="tag">Planned collection</span><h3>The first builds will appear here.</h3><p>Each app will explain the problem it solves, who it helps, what I built, and its current status—with a demo or source link when available.</p></div>
+  </section>
 </SiteLayout>

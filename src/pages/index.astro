@@ -1,9 +1,38 @@
 ---
 import { siteUrl } from '../utils/urls';
 import SiteLayout from '../layouts/SiteLayout.astro';
-import ResumeLink from '../components/ResumeLink.astro';
-import ProjectGrid from '../components/ProjectGrid.astro';
+import { portfolio } from '../data/portfolio';
 ---
 <SiteLayout title="Home" home>
-<section class="hero"><div class="hero-copy"><div class="eyebrow">Francis Patino</div><h1>Commercial perspective.<br><em>Analytical thinking.</em></h1><p>A background in business development. A growing focus on business analytics. Connecting commercial questions with evidence and practical decisions.</p><div class="actions"><a class="button primary" href={siteUrl('/projects/')}>View My Work <span aria-hidden="true">↗</span></a><ResumeLink/></div></div><figure class="hero-art"><img src={siteUrl('/assets/architectural-stairs.jpg')} width="1400" height="937" alt=""><figcaption><span>Business development &amp; analytics</span>Built on experience. Informed by evidence.</figcaption></figure></section><section class="themes" aria-label="Key themes"><article><span class="number">01</span><div><h3>Commercial Growth</h3><p>Start with the business question.</p></div></article><article><span class="number">02</span><div><h3>Data-Driven Thinking</h3><p>Use evidence to bring clarity.</p></div></article><article><span class="number">03</span><div><h3>Real-World Impact</h3><p>Connect insight to a practical decision.</p></div></article></section><section class="section"><div class="section-head"><h2>Featured Projects</h2><a class="text-link" href={siteUrl('/projects/')}>Explore the work <span aria-hidden="true">↗</span></a></div><ProjectGrid featured/></section>
+  <section class="home-intro" aria-labelledby="home-title">
+    <div class="home-summary">
+      <div class="eyebrow">Francis Mondelle Patino</div>
+      <h1 id="home-title">Commercial experience.<br/><em>Decisions informed by data.</em></h1>
+      <p>Business development and account management professional with 7+ years across commercial roles and operations, and a Master of Business Analytics.</p>
+      <div class="home-actions">
+        <a class="button primary" href={siteUrl('/about/#contact')}>Get in touch <span aria-hidden="true">↗</span></a>
+        {portfolio.resume && <a class="text-link" href={siteUrl(portfolio.resume)} download>Download CV <span aria-hidden="true">↓</span></a>}
+      </div>
+    </div>
+    <article class="problem-preview" aria-labelledby="problem-title">
+      <div class="eyebrow">A problem I worked on</div>
+      <h2 id="problem-title">Where should we prioritise fibre expansion?</h2>
+      <p>At Converge, I used household, geospatial and economic data to guide network rollout priorities.</p>
+      <ol class="decision-path" aria-label="Approach to rollout planning">
+        <li><span>01</span><div><strong>Understand demand</strong><p>Analyse households by area.</p></div></li>
+        <li><span>02</span><div><strong>Set priorities</strong><p>Refine rollout penetration targets.</p></div></li>
+        <li><span>03</span><div><strong>Plan deployment</strong><p>Translate priorities into street-level layouts.</p></div></li>
+      </ol>
+      <p class="preview-outcome"><strong>20%</strong><span>improvement in allocation efficiency<br/><small>Reported in my professional experience.</small></span></p>
+      <a class="text-link" href={siteUrl('/about/#network-planning')}>Read the role and results <span aria-hidden="true">↗</span></a>
+    </article>
+  </section>
+  <section class="home-evidence" aria-labelledby="evidence-title">
+    <div class="section-head"><h2 id="evidence-title">Experience in practice</h2><span class="muted">Selected contributions</span></div>
+    <div class="evidence-grid">
+      <article><div class="eyebrow">Enterprise sales · Converge</div><h3><strong>70+</strong> new enterprise clients</h3><p>Acquired as Key Account Manager, alongside a ₱300M pipeline and ₱50M in revenue contributions.</p></article>
+      <article><div class="eyebrow">Network planning · Converge</div><h3><strong>5.2M+</strong> households analysed</h3><p>Regional analysis used to refine fibre rollout targets and focus deployment capacity.</p></article>
+      <article><div class="eyebrow">Current role · Seven Network</div><h3>Regional account management</h3><p>Connecting client objectives with television and digital advertising across the Spencer Gulf.</p></article>
+    </div>
+  </section>
 </SiteLayout>
