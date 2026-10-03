@@ -1,9 +1,10 @@
 ---
+import { siteUrl } from '../utils/urls';
 import SiteLayout from '../layouts/SiteLayout.astro';
 import PageIntro from '../components/PageIntro.astro';
 import ResumeLink from '../components/ResumeLink.astro';
 import { portfolio } from '../data/portfolio';
 ---
 <SiteLayout title="Experience">
-<PageIntro label="Experience" description="Business development and commercial experience provide the context for a deeper focus on business analytics.">Commercial foundations.<br>Analytical direction.</PageIntro><section class="page-content"><div class="section-head"><h2>Professional experience</h2><ResumeLink/></div>{portfolio.experience.map(job => <article class="experience-row"><div class="role-meta"><span>{job.period}</span><p>{job.location}</p></div><div><h2>{job.role}</h2><h3>{job.company}</h3><p>{job.description}</p><ul>{job.highlights.map(highlight => <li>{highlight}</li>)}</ul></div></article>)}<p class="note">{portfolio.experienceNote}</p><div class="actions"><a class="text-link" href="/projects/">Explore analytical work <span aria-hidden="true">↗</span></a></div></section>
+<PageIntro label="Experience" description="Business development and commercial experience provide the context for a deeper focus on business analytics.">Commercial foundations.<br>Analytical direction.</PageIntro><section class="page-content"><div class="section-head"><h2>Professional experience</h2><ResumeLink/></div>{portfolio.experience.map(job => <article class="experience-row"><div class="role-meta"><span>{job.period}</span><p>{job.location}</p></div><div><h2>{job.role}</h2><h3>{job.company}</h3><p>{job.description}</p><ul>{job.highlights.map(highlight => <li>{highlight}</li>)}</ul></div></article>)}<p class="note">{portfolio.experienceNote}</p><div class="actions"><a class="text-link" href={siteUrl('/projects/')}>Explore analytical work <span aria-hidden="true">↗</span></a></div></section>
 </SiteLayout>

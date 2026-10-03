@@ -1,4 +1,5 @@
 ---
+import { siteUrl } from '../utils/urls';
 import type { CaseStudy } from '../data/portfolio';
 interface Props { study: CaseStudy }
 const { study } = Astro.props;
@@ -7,5 +8,5 @@ const { study } = Astro.props;
   <span class="eyebrow">{study.category}</span> <span class="tag">{study.status}</span>
   <h3>{study.title}</h3><p>{study.summary}</p>
   <dl><dt>Business question</dt><dd>{study.businessProblem}</dd><dt>Data and approach</dt><dd>{study.dataApproach}</dd><dt>Tools</dt><dd>{study.tools.join(' · ')}</dd><dt>Key insight</dt><dd>{study.keyInsight}</dd><dt>Outcome or recommendation</dt><dd>{study.outcome}</dd></dl>
-  {study.href && <a class="text-link" href={study.href}>Explore case study <span aria-hidden="true">↗</span></a>}
+  {study.href && <a class="text-link" href={siteUrl(study.href)}>Explore case study <span aria-hidden="true">↗</span></a>}
 </div></article>
